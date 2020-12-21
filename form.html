@@ -1,0 +1,97 @@
+<!doctype html>
+<html lang="es">
+	<head>
+		<meta charset="utf-8">
+		<title>Registro</title>
+		<link href="styles/colors.css"stylesheet" type="text/css"/>
+		<link href="styles/base.css" rel="stylesheet" type="text/css"/>
+		<link href="styles/great.css" rel="stylesheet" type="text/css" media="screen and (min-width: 981px)"/>
+		<link href="styles/medium.css" rel="stylesheet" type="text/css" media="screen and (min-width: 481px) and (max-width:980px)"/>
+		<link href="styles/mini.css" rel="stylesheet" type="text/css" media="screen and (max-width: 480px)"/>
+	</head>
+	<body>
+		<h1>Formulario de registro</h1>
+		
+		<div id="form-signin">
+			<form>
+				<h2>Ingrese sus datos</h2>
+				<p>
+					<label for="name">Nombre (Obligatorio)</label>
+					<input type="text" name="name" id="name"
+					placeholder="Guillermo Durán"
+					autofocus
+					autocomplete
+					required>
+				</p>
+				
+				<p>
+					<label for="passwd">Contraseña (Obligatorio)</label>
+					<input type="password" name="passwd" id="passwd"
+					placeholder="qwe1234"
+					pattern="[a-z]{3}[0-9]{4}"
+					required> 
+				</p>
+				
+				<p>
+					<label for="phone">Teléfono</label>
+					<input type="tel" name="phone" id="phone" placeholder="0980415080"> 
+				</p>
+				
+				<p>
+					<label for="email">Correo eletrónico</label>
+					<input type="email" name="email" id="email" placeholder="usuario@correo.com">
+				</p>
+				
+				<p>
+					<label for="website">Sitio web</label>
+					<input type="url" name="website" id="website" placeholder="www.youtube.com"> 
+				</p>
+				
+				<p>
+					<label for="number">Número de temas</label>
+					<input type="number" name="number" id="number" min="2" max="14" step="2" placeholder="2"> 
+				</p>
+				
+				<p>
+					<label for="deliverydate">Fecha de envio</label>
+					<input type="date" name="deliverydate" id="deliverydate" min="2020-11-29">
+				</p>
+				
+				<p>
+					<label for="color">Color del item</label>
+					<input type="color" name="color" id="color" value="#1A33FF">
+				</p>
+				
+				<p>
+					<label for="search">Buscar</label>
+					<input type="search" name="search" id="search">
+				</p>
+				
+				<p>
+					<label for="points">Rango de valores</label>
+					<input type="range" name="points" id="points" min="1" max="10">
+				</p>
+				
+				<p>
+					<fieldset>
+						<legend>Selecciona una prioridad</legend>
+						<p><label><input type="radio" name="priority" value="baja" checked> Baja </label></p>
+						<p><label><input type="radio" name="priority" value="media"> Media </label></p>
+						<p><label><input type="radio" name="priority" value="alta"> Alta </label></p>
+					</fieldset>
+				</p>
+				
+				<p>
+					<fieldset>
+						<legend>Selecciona el tipo de envio</legend>
+						<p><label><input type="checkbox" name="deliverytype" value="urgente" checked> Con Urgencia </label></p>
+						<p><label><input type="checkbox" name="deliverytype" value="acuse"> Con acuse de recibo </label></p>
+						<p><label><input type="checkbox" name="deliverytype" value="reembolso"> Contra reembolso </label></p>
+					</fieldset>
+				</p>
+				
+				<input type="submit" value="Enviar">
+			</form>
+		</div>
+	</body>
+</html>
