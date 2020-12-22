@@ -4,6 +4,9 @@ footer {
     padding: 3px;
     text-align: center;
     background-color: #33055e;
+	left: 0;
+	bottom: 0;
+	width: 99.5%;
 }
 a {
     color: #50A1B5;

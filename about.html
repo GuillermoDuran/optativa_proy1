@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+
+<html>
+	<head>
+		<meta name="viewport" charset="utf-8" content="width=device-width; initial-scale=1.0" />
+		<title>Acerca de</title>
+		<link href="styles/colors.css"stylesheet type="text/css"/>
+		<link href="styles/base.css" rel="stylesheet" type="text/css"/>
+		<link href="styles/great.css" rel="stylesheet" type="text/css" media="screen and (min-width: 981px)"/>
+		<link href="styles/medium.css" rel="stylesheet" type="text/css" media="screen and (min-width: 481px) and (max-width:980px)"/>
+		<link href="styles/mini.css" rel="stylesheet" type="text/css" media="screen and (max-width: 480px)"/>
+		<script src="/js/jquery-3.5.1.min.js"></script>
+		<script src="https://kit.fontawesome.com/020d9bf91a.js" crossorigin="anonymous"></script>
+	</head>
+
+		<script>
+			$(function () {
+				$("#header").load("assets/navbar.html");
+				$("#footer").load("assets/footer.html");
+			});
+		</script>
+	
+	<body>
+		<div id="header"></div>
+
+		<div id="wrapper">
+			<section id="about">
+				<h1>Acerca del creador del sitio</h1>
+				<p>
+                    Guillermo Durán es un estudiante de ingeniería en sistemas de la Facultad de Ciencias Informáticas
+                    en la Universidad Laica Eloy Alfaro de Manabí. Actualmente cursa el séptimo semestre en esta carrera
+                    y presanta la actual página web como proyecto parte del trabajo necesario para la materia de Optativa
+                    1 impartida por el Ingeniero Jhon Antonio Cevallos Macias docente de esta facultad.
+                </p>
+                <img class="abt_img" src="/assets/images/about/20200606_141230.png" alt="Cursos disponibles TenSai">
+                <p>
+                    La información de contacto la puede encontrar en el pie de esta página.
+                </p>
+
+
+			</section>
+		</div>
+
+		<div id="footer"></div>
+	</body>
+</html>

@@ -18,6 +18,9 @@ li, a, button {
     text-decoration: none;
 }
 
+.display-great {
+	display: inherit !important;
+}
 
 .logo {
     cursor: pointer;
@@ -37,6 +40,10 @@ li, a, button {
 
 .nav_menu li a {
     transition: all 0.3s ease 0s;
+}
+
+.nav_menu i {
+    margin-right: 0.4em;
 }
 
 .nav_menu button {

@@ -1,27 +1,49 @@
 @import url('https://fonts.googleapis.com/css2?family=Varela+Round&display=swap');
+html {
+	height: 100%;
+}
+
+/*Reglas generales de great*/
 
 body {
-	background-image: url("/assets/images/main-background4.png");
+	display: flex;
+	background-image: url("/assets/images/backgrounds/main-background4.png");
 	background-size: 100%;
 	background-repeat: no-repeat;
 	background-attachment: fixed;
 	font-family: "Varela Round", "sans-serif";
 	font-weight: normal;
+	margin: 0;
+	padding: 0;
+	flex-direction: column;
+
+	min-height: 100%;
 }
 
 .display-great {
 	display: inherit !important;
 }
 
-h1, h2 {
+h1 {
 	text-align: center;
-	color: #6FB2C3;
+	font-size: xx-large;
+	color: #E37D24;
 }
 
+h2 {
+	color: #50A1B5;
+}
+
+/*Para index*/
+
 #wrapper {
+	border-radius: 2em;
+	border-style: inset;
+	border-color: #a9d1db9c;
+	box-shadow: 10px 10px rgba(0, 0, 0, 0.267);
 	align-items: center;
-	background-color: #20033ae8;
-	color: #F7F7ED;
+	background-color: #f1f7f9f3;
+	color: #12262B;
 	margin-left: auto;
 	margin-right: auto;
 	padding: 2%;
@@ -31,7 +53,7 @@ h1, h2 {
 	max-width: 1500px;
 }
 
-.abt_img {
+.inf_img {
 	display: block;
 	margin-left: auto;
 	margin-right: auto;
@@ -42,7 +64,7 @@ h1, h2 {
 
 #sgnup button {
 	display: block;
-	background-color: #50A1B5;
+	background-color: #428C9E;
 	border: none;
 	padding: 9px 25px;
 	cursor: pointer;
@@ -55,14 +77,43 @@ h1, h2 {
 }
 
 #sgnup button:hover {
-	background-color: #428C9E;
+	background-color: #3C7F90;
 }
 
-#form-signin {
-	margin-top: 5%;
-	margin-right: auto;
+#sgnup i {
+	margin-right: 0.4em;
+}
+
+.abt_img {
+	display: block;
 	margin-left: auto;
-	width: 33%;
+	margin-right: auto;
+	width: 25%;
+	margin-top: 2em;
+	margin-bottom: 2em;
+}
+
+/*Para formulario de registro*/
+
+#form-signin {
+	border-radius: 2em;
+	border-style: inset;
+	border-color: #a9d1db9c;
+	box-shadow: 10px 10px rgba(0, 0, 0, 0.267);
+	align-items: center;
+	background-color: #f1f7f9f3;
+	color: #12262B;
+	margin-left: auto;
+	margin-right: auto;
+	padding: 2%;
+	clear: both;
+	width: 60%;
+	height: auto;
+	max-width: 1500px;
+}
+
+#notice {
+	font-size: small;
 }
 
 form p {
@@ -73,4 +124,15 @@ form p {
 form label {
 	text-align: right;
 	margin-right: 10%;
+}
+
+.req {
+	color: #E37D24;
+	font-weight: 600;
+}
+
+/*Pie de pagina*/
+
+#footer {
+	margin-top: auto;
 }
