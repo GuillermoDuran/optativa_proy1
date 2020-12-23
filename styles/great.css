@@ -27,16 +27,14 @@ body {
 h1 {
 	text-align: center;
 	font-size: xx-large;
-	color: #E37D24;
+	color: #4A0788;
 }
 
 h2 {
 	color: #50A1B5;
 }
 
-/*Para index*/
-
-#wrapper {
+.wrapper {
 	border-radius: 2em;
 	border-style: inset;
 	border-color: #a9d1db9c;
@@ -53,16 +51,8 @@ h2 {
 	max-width: 1500px;
 }
 
-.inf_img {
-	display: block;
-	margin-left: auto;
-	margin-right: auto;
-	width: 50%;
-	margin-top: 2em;
-	margin-bottom: 2em;
-}
-
-#sgnup button {
+input[type=submit], .in_content_btn {
+	color: #F7F7ED;
 	display: block;
 	background-color: #428C9E;
 	border: none;
@@ -76,9 +66,20 @@ h2 {
 	margin-bottom: 3em;
 }
 
-#sgnup button:hover {
+input[type=submit]:hover, .in_content_btn:hover {
 	background-color: #3C7F90;
 }
+
+/*Para index*/
+
+.inf_img {
+	display: block;
+	margin-left: auto;
+	margin-right: auto;
+	width: 50%;
+	margin-top: 2em;
+	margin-bottom: 2em;
+} 
 
 #sgnup i {
 	margin-right: 0.4em;
@@ -95,30 +96,15 @@ h2 {
 
 /*Para formulario de registro*/
 
-#form-signin {
-	border-radius: 2em;
-	border-style: inset;
-	border-color: #a9d1db9c;
-	box-shadow: 10px 10px rgba(0, 0, 0, 0.267);
-	align-items: center;
-	background-color: #f1f7f9f3;
-	color: #12262B;
-	margin-left: auto;
-	margin-right: auto;
-	padding: 2%;
-	clear: both;
-	width: 60%;
-	height: auto;
-	max-width: 1500px;
-}
-
 #notice {
 	font-size: small;
+	padding: 1%;
 }
 
-form p {
+.conteiner-inptbxs p {
+	padding: 1%;
 	display: grid;
-	grid-template-columns: 200px 200px;
+	grid-template-columns: 18em 18em;
 }
 
 form label {
@@ -126,9 +112,123 @@ form label {
 	margin-right: 10%;
 }
 
-.req {
-	color: #E37D24;
-	font-weight: 600;
+:focus {
+	outline: none;
+}
+
+input {
+	font-family: "Varela Round", "sans-serif";
+	font-size: 1em;
+}
+
+input:not(.submit):hover {
+	cursor: auto;
+}
+
+.box {
+	border: 0;
+	border-bottom: 1.5px solid #ccc;
+	background-color: rgba(255, 235, 205, 0);
+}
+
+.box ~ .focus-border {
+	grid-column: 2;
+	bottom: 0;
+	left: 50%;
+	width: 0;
+	height: 2px;
+	background-color: #430ed3;
+	transition: 0.4s;
+}
+
+.box:focus ~ .focus-border {
+	width: 100%;
+	transition: 0.4s;
+	left: 0;
+}
+
+#id, #phone {
+	width: 6.5em;
+	margin-right: auto;
+}
+
+.smalltxt .box:focus ~ .focus-border {
+	width: 6.8em;
+}
+
+.number {
+	width: 3em;
+}
+
+.smallertxt .box:focus ~ .focus-border {
+	width: 3.3em;
+}
+
+.range {
+	width: 10em;
+}
+
+#cursos {
+	width: 50%;
+	display: grid;
+	margin-left: auto;
+	margin-right: auto;
+	text-align: left;
+}
+
+#cursos #dibypint {
+	grid-row: 1;
+	grid-column: 2;
+}
+
+#cursos label {
+	display: inline-flex;
+}
+
+#cursos label, input {
+	cursor: pointer;
+}
+
+#cursos #ajedrez, #dibypint {
+	padding-bottom: 15px;
+}
+
+fieldset {
+	border: none;
+}
+
+	/*Boton radial personalizado*/
+	#cursos input {
+		display: none;
+	}
+
+	.radio-mark {
+		width: 1.2em;
+		height: 1.2em;
+		border: solid 2px #aca5c2;
+		border-radius: 50%;
+		margin-right: 10px;
+		box-sizing: border-box;
+		padding: 2px;
+	}
+
+	.radio-mark::after {
+		content: "";
+		width: 100%;
+		height: 100%;
+		display: block;
+		background: #553a9e;
+		border-radius: 50%;
+		transform: scale(0);
+		transition: transform 0.15s;
+	}
+
+	#cursos input:checked + .radio-mark::after {
+		transform: scale(1);
+	}
+
+#submit_reg {
+	width: 175px;
 }
 
 /*Pie de pagina*/
