@@ -1,0 +1,65 @@
+<!doctype html>
+<html lang="es">
+	<head>
+		<meta charset="utf-8">
+		<title>Registro</title>
+		<link href="styles/colors.css"stylesheet type="text/css"/>
+		<link href="styles/base.css" rel="stylesheet" type="text/css"/>
+		<link href="styles/great.css" rel="stylesheet" type="text/css" media="screen and (min-width: 981px)"/>
+		<link href="styles/medium.css" rel="stylesheet" type="text/css" media="screen and (min-width: 481px) and (max-width:980px)"/>
+		<link href="styles/mini.css" rel="stylesheet" type="text/css" media="screen and (max-width: 480px)"/>
+		<script src="/js/jquery-3.5.1.min.js"></script>
+		<script src="https://kit.fontawesome.com/020d9bf91a.js" crossorigin="anonymous"></script>
+    </head>
+
+    <script>
+		$(function () {
+			$("<span class='focus-border'></span>").insertAfter(".box"); 
+		});
+	</script>
+
+	<body id="body-login">
+
+        <header id="header-login">
+            <a href="/index.html"><img class="logo" src="/assets/images/logos/logo1-3.png" alt="Logo de TenSai" id="login_logo_home"></a>
+        </header>
+
+        <div class="container" id="login_container">
+            
+            <div class="inner-container">
+                <img id="dspl_img_login" class="inpage_imgs" src="/assets/images/info/abt2.png" alt="Cursos disponibles TenSai">
+            </div>
+
+            <div class="wrapper" id="frm_log_wrapper">
+                <form>
+                    <img src="/assets/images/logos/logo1-2.png" alt="Logo de TenSai" class="inpage_imgs" id="login_logo">
+                    <h1 id="login_title">Maneje los cursos de sus hijos accediendo con sus datos</h1>
+
+                    <div class="container-inptbxs" id="container-input-log">
+                        
+                        <p>
+                            <label class="req" for="login_mail"> Correo </label>
+                            <input type="email" class="box box-login" name="login_mail" id="login_mail" maxlength="200"
+                            autofocus
+                            autocomplete
+                            required>
+                        </p>
+                        
+                        <p>
+                            <label class="req" for="login_pswd"> Contraseña </label>
+                            <input type="password" class="box box-login" name="login_pswd" id="login_pswd" maxlength="20"
+                            pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[!@#\$%\^&\*]).{6,}"
+                            required>
+                        </p>
+                            
+                    </div>	
+                    
+                    <input class="submit" id="submit_login" type="submit" value="Acceder">
+                </form>
+
+            </div>
+
+        </div>
+
+	</body>
+</html>

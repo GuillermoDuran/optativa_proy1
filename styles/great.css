@@ -70,9 +70,7 @@ input[type=submit]:hover, .in_content_btn:hover {
 	background-color: #3C7F90;
 }
 
-/*Para index*/
-
-.inf_img {
+.inpage_imgs {
 	display: block;
 	margin-left: auto;
 	margin-right: auto;
@@ -80,6 +78,12 @@ input[type=submit]:hover, .in_content_btn:hover {
 	margin-top: 2em;
 	margin-bottom: 2em;
 } 
+
+.submit {
+	width: 175px;
+}
+
+/*Para index*/
 
 #sgnup i {
 	margin-right: 0.4em;
@@ -94,14 +98,20 @@ input[type=submit]:hover, .in_content_btn:hover {
 	margin-bottom: 2em;
 }
 
+
+
 /*Para formulario de registro*/
+
+#frm_reg_wrapper {
+	width: 80%;
+}
 
 #notice {
 	font-size: small;
 	padding: 1%;
 }
 
-.conteiner-inptbxs p {
+.container-inptbxs p {
 	padding: 1%;
 	display: grid;
 	grid-template-columns: 18em 18em;
@@ -171,8 +181,7 @@ input:not(.submit):hover {
 #cursos {
 	width: 50%;
 	display: grid;
-	margin-left: auto;
-	margin-right: auto;
+	margin-left: 10%;
 	text-align: left;
 }
 
@@ -227,9 +236,81 @@ fieldset {
 		transform: scale(1);
 	}
 
-#submit_reg {
-	width: 175px;
+
+/*Formulario de login*/
+
+#body-login {
+	background-image: url(/assets/images/backgrounds/main-background-login.png) ;
 }
+
+.container {
+	display: grid;
+	grid-template-columns: 50% 50%;
+}
+
+.inner-container {
+	margin-top: 5%;
+	margin-left: 5%;
+}
+
+#header-login {
+	margin-top: 2%;
+	margin-left: 2%;
+}
+
+#header-login .logo {
+	background-color: #33055E;
+	border-radius: 10%;
+}
+
+#login_logo_home {
+	width: 100px;
+}
+
+#dspl_img_login {
+	border: solid #33055e8a 10px;
+}
+
+#frm_log_wrapper {
+	margin-right: 10%;
+	padding: 1%;
+	width: 90%;
+}
+
+#frm_log_wrapper #submit_login {
+	margin-bottom: 5%;
+	margin-top: 5%;
+}
+
+#frm_log_wrapper .box-login {
+	margin-top: 1%;
+	font-size: 14px;
+}
+
+#container-input-log p {
+	margin-left: 30%;
+	margin-right: 30%;
+	width: 50%;
+	grid-template-columns: 75%;
+}
+
+#container-input-log label {
+	text-align: left;
+}
+
+.box-login ~ .focus-border {
+	grid-column: 1;
+}
+
+#login_logo {
+	width: 90px;
+}
+
+#login_title {
+	font-size: large;
+}
+
+
 
 /*Pie de pagina*/
 
