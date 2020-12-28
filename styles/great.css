@@ -310,10 +310,72 @@ fieldset {
 	font-size: large;
 }
 
+/*Pagina de administracion*/
+
+#admin_body header {
+	margin-bottom: 0;
+}
+
+#admin-content {
+	display: grid;
+	grid-template-columns: 25% auto;
+}
+
+#admin-content ul {
+	background-color: #4A0788;
+	list-style: none;
+	margin-top: 0;
+	margin-bottom: 0;
+	padding-left: 0;
+}
 
 
-/*Pie de pagina*/
+#admin-content .wrapper {
+	background-color: #F1F7F9;
+	border-radius: 0;
+	border-style: none;
+	box-shadow: none;
+	margin-top: 20px;
+	margin-bottom: 20px;
+	box-shadow: 10px 10px rgba(0, 0, 0, 0.267);
+}
 
-#footer {
-	margin-top: auto;
+#admin-content .wrapper .adm-btn-wrapper {
+	width: fit-content;
+	margin-left: auto;
+	margin-right: auto;
+	margin-top: 25px;
+}
+
+#admin-content .wrapper .adm-btn {
+	padding: 9px 50px;
+    border: none;
+    border-radius: 0px;
+    cursor: pointer;
+    transition: all 0.3s ease 0s;
+	height: 3.5em;
+}
+
+#admin-content .wrapper #acpt-btn {
+	margin: 10px;
+	display: inline-block;
+	background-color: #50A1B5;
+}
+
+#admin-content .wrapper #acpt-btn:hover {
+	background-color: #428C9E;
+}
+
+#admin-content .wrapper #rjct-btn {
+	margin: 10px;
+	display: inline-block;
+	background-color: #E37D24;
+}
+
+#admin-content .wrapper #rjct-btn:hover {
+	background-color: #C76A1A;
+}
+
+#admin_body #footer footer {
+	margin-top: 0;
 }

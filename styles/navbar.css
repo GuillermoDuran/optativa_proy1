@@ -71,3 +71,30 @@ li, a, button {
 #cta button:hover {
     background-color:  #e37d2483;
 }
+
+/*Para nav de user*/
+
+#user_header {
+    background-color: #9AC9D5;
+    border-bottom: #33055e solid 1px;
+}
+
+#user_header ul {
+    width: 40%;
+}
+
+#user_header button {
+    background-color: #33055e;
+    width: 200px;
+    margin-left: 10%;
+}
+
+#user_header a {
+    color: #F7F7ED;
+}
+
+#user_header #usr_name {
+    color: #33055e;
+    margin-bottom: 15px;
+    width: 200px;
+}
