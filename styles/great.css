@@ -322,22 +322,73 @@ fieldset {
 }
 
 #admin-content ul {
-	background-color: #4A0788;
+	background-color: #F5ECFE;
 	list-style: none;
 	margin-top: 0;
 	margin-bottom: 0;
 	padding-left: 0;
+	line-height: 60px;
+	text-indent: 10%;
+	cursor: pointer;
 }
 
+#admin-content .side-menu {
+	border-right: solid 1px #33055e;
+}
+
+.side-menu #list-title {
+	cursor: default;
+	background-color: #33055e;
+	text-align: center;
+	text-indent: 0;
+	font-size: 20px;
+	color: #F7F7ED;
+}
+
+.side-menu #list-title:hover {
+	background-color: #33055e;
+}
+
+.side-menu .item {
+	border-bottom: solid 1px #690AC2;
+}
+
+.side-menu li:hover {
+	background-color: #e7dbf3;
+}
+
+.sub-menu li{
+	color: #33055e;
+}
+
+.sub-menu ul li {
+	text-indent: 20%;
+}
+
+.sub-menu ul {
+	border-bottom: solid 1px #690AC2;
+	display: none;
+}
+
+.sub-menu #pend-items.show {
+	display: block;
+}
+
+.sub-menu #acpt-items.show1 {
+	display: block;
+}
+
+.sub-menu #rchz-items.show2 {
+	display: block;
+}
 
 #admin-content .wrapper {
 	background-color: #F1F7F9;
-	border-radius: 0;
 	border-style: none;
 	box-shadow: none;
-	margin-top: 20px;
-	margin-bottom: 20px;
-	box-shadow: 10px 10px rgba(0, 0, 0, 0.267);
+	border-radius: 0;
+	width: 96%;
+	height: 100%;
 }
 
 #admin-content .wrapper .adm-btn-wrapper {

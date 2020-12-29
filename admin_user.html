@@ -14,11 +14,22 @@
 	</head>
 
 	<script>
+
 		$(function () {
 			$("#header").load("assets/user_nav.html");
 			$("#footer").load("assets/footer.html");
 			$("<div class='radio-mark'></div>").insertAfter(".radio");
+			$("#sub-mn-pend").click(function (){
+				$('.sub-menu #pend-items').toggleClass("show");
+			});
+			$("#sub-mn-acpt").click(function (){
+				$('.sub-menu #acpt-items').toggleClass("show1");
+			});
+			$("#sub-mn-rchz").click(function (){
+				$('.sub-menu #rchz-items').toggleClass("show2");
+			});
 		});
+
 	</script>
 
 	<body id="admin_body">
@@ -27,18 +38,25 @@
 		<div id="admin-content">
 			
 			<ul class="side-menu">
-				<li class="item">Solicitudes</li>
+				<li id="list-title">Solicitudes</li>
 					<ul class="sub-menu">
-						<li>Solicitud1</li>
+						<li class="item" id="sub-mn-pend">Pendientes</li>
+							<ul id="pend-items">
+								<li>Solicitud1</li>
+								<li>Solicitud1</li>
+							</ul>
+						<li class="item" id="sub-mn-acpt">Aceptadas</li>
+							<ul id="acpt-items">
+								<li>Solicitud1</li>
+								<li>Solicitud1</li>
+							</ul>
+						<li class="item" id="sub-mn-rchz">Rechazadas</li>
+							<ul id="rchz-items">
+								<li>Solicitud1</li>
+								<li>Solicitud1</li>
+							</ul>
 					</ul>
-				<li class="item">Aceptadas</li>
-					<ul class="sub-menu">
-						<li>Solicitud1</li>
-					</ul>
-				<li class="item">Rechazadas</li>
-					<ul class="sub-menu">
-						<li>Solicitud1</li>
-					</ul>
+				
 			</ul>
 
 			<div class="wrapper" id="frm_reg_wrapper">
