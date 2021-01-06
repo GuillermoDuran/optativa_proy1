@@ -106,15 +106,20 @@ input[type=submit]:hover, .in_content_btn:hover {
 	width: 80%;
 }
 
+#frm_reg_wrapper h2 {
+	margin-left: 10%;
+}
+
 #notice {
 	font-size: small;
 	padding: 1%;
+	margin-left: 10%;
 }
 
-.container-inptbxs p {
+.container-inptbxs > p {
 	padding: 1%;
 	display: grid;
-	grid-template-columns: 18em 18em;
+	grid-template-columns: 50% 18em;
 }
 
 form label {
@@ -167,7 +172,13 @@ input:not(.submit):hover {
 }
 
 .number {
-	width: 3em;
+	width: 5em;
+}
+
+p .range-value {
+	grid-column: 2;
+	grid-row: 2;
+	padding-left: 13%;
 }
 
 .smallertxt .box:focus ~ .focus-border {
@@ -178,27 +189,33 @@ input:not(.submit):hover {
 	width: 10em;
 }
 
-#cursos {
+.cursos {
 	width: 50%;
 	display: grid;
-	margin-left: 10%;
+	margin-left: 32%;
+	margin-right: auto;
 	text-align: left;
 }
 
-#cursos #dibypint {
+#cursos-p {
+	padding: 0;
+	margin: 0;
+}
+
+.cursos #dibypint {
 	grid-row: 1;
 	grid-column: 2;
 }
 
-#cursos label {
+.cursos label {
 	display: inline-flex;
 }
 
-#cursos label, input {
+.cursos label, input {
 	cursor: pointer;
 }
 
-#cursos #ajedrez, #dibypint {
+.cursos #ajedrez, #dibypint {
 	padding-bottom: 15px;
 }
 
@@ -207,7 +224,7 @@ fieldset {
 }
 
 	/*Boton radial personalizado*/
-	#cursos input {
+	.cursos input {
 		display: none;
 	}
 
@@ -232,7 +249,7 @@ fieldset {
 		transition: transform 0.15s;
 	}
 
-	#cursos input:checked + .radio-mark::after {
+	.cursos input:checked + .radio-mark::after {
 		transform: scale(1);
 	}
 
@@ -312,16 +329,21 @@ fieldset {
 
 /*Pagina de administracion*/
 
-#admin_body header {
+.user_body {
+	height: fit-content;
+}
+
+.user_body header {
 	margin-bottom: 0;
 }
 
-#admin-content {
+#user-content {
 	display: grid;
 	grid-template-columns: 25% auto;
+	height: 100%;
 }
 
-#admin-content ul {
+#user-content ul {
 	background-color: #F5ECFE;
 	list-style: none;
 	margin-top: 0;
@@ -332,7 +354,7 @@ fieldset {
 	cursor: pointer;
 }
 
-#admin-content .side-menu {
+#user-content .side-menu {
 	border-right: solid 1px #33055e;
 }
 
@@ -382,7 +404,7 @@ fieldset {
 	display: block;
 }
 
-#admin-content .wrapper {
+#user-content .wrapper {
 	background-color: #F1F7F9;
 	border-style: none;
 	box-shadow: none;
@@ -391,14 +413,14 @@ fieldset {
 	height: 100%;
 }
 
-#admin-content .wrapper .adm-btn-wrapper {
+#user-content .wrapper .adm-btn-wrapper {
 	width: fit-content;
 	margin-left: auto;
 	margin-right: auto;
 	margin-top: 25px;
 }
 
-#admin-content .wrapper .adm-btn {
+#user-content .wrapper .adm-btn {
 	padding: 9px 50px;
     border: none;
     border-radius: 0px;
@@ -407,26 +429,111 @@ fieldset {
 	height: 3.5em;
 }
 
-#admin-content .wrapper #acpt-btn {
+#user-content .wrapper #acpt-btn {
 	margin: 10px;
 	display: inline-block;
 	background-color: #50A1B5;
 }
 
-#admin-content .wrapper #acpt-btn:hover {
+#user-content .wrapper #acpt-btn:hover {
 	background-color: #428C9E;
 }
 
-#admin-content .wrapper #rjct-btn {
+#user-content .wrapper #rjct-btn {
 	margin: 10px;
 	display: inline-block;
 	background-color: #E37D24;
 }
 
-#admin-content .wrapper #rjct-btn:hover {
+#user-content .wrapper #rjct-btn:hover {
 	background-color: #C76A1A;
 }
 
-#admin_body #footer footer {
+.user_body #footer footer {
 	margin-top: 0;
+}
+
+#frm_user_wrapper {
+	height: 100%;
+}
+
+
+
+/*Para el pop up de alerta*/
+.pop-up {
+    font-family: "Varela Round", sans-serif;
+}
+
+.pop-up h1 {
+    color: #33055e;
+}
+
+.pop-up .overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    background: rgba(172, 170, 170, 0.671);
+    display: none;
+}
+
+.pop-up .pop-up-content {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background: #fff;
+    width: 450px;
+    z-index: 2;
+    text-align: center;
+}
+
+.pop-up .close-btn {
+    position: absolute;
+    right: 20px;
+    top: 20px;
+    width: 30px;
+    height: 30px;
+    background: #D7741D;
+    color: #fff;
+    font-size: 22px;
+    font-weight: 30px;
+    text-align: center;
+    border-radius: 50%;
+    cursor: pointer;
+}
+
+.pop-up.active .overlay {
+    display: block;
+}
+
+.pop-up.active .pop-up-content {
+    transition: all 300ms ease-in-out;
+    transform: translate(-50%, -50%) scale(1);
+}
+
+/*Para usuario normal*/
+#consulta_user_wrapper .container-inptbxs label {
+	color: #3F0674;
+}
+
+#consulta_user_wrapper .container-inptbxs p {
+	display: grid;
+	grid-template-columns: 50% 50%;
+	margin-top: 32px;
+}
+
+#consulta_user_wrapper .container-inptbxs label {
+	text-align: right;
+	margin-right: 10%;
+}
+
+#consulta {
+	display: none;
+}
+
+div[name="container-input-cons"] {
+	width: 100%;
+	border-top: #33055E solid 1px;
 }

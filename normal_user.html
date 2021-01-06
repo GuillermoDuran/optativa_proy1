@@ -1,0 +1,110 @@
+<!doctype html>
+<html lang="es">
+	<head>
+		<meta charset="utf-8">
+		<title>Registro</title>
+		<link href="styles/colors.css"stylesheet type="text/css"/>
+		<link href="styles/base.css" rel="stylesheet" type="text/css"/>
+		<link href="styles/great.css" rel="stylesheet" type="text/css" media="screen and (min-width: 981px)"/>
+		<link href="styles/medium.css" rel="stylesheet" type="text/css" media="screen and (min-width: 481px) and (max-width:980px)"/>
+		<link href="styles/mini.css" rel="stylesheet" type="text/css" media="screen and (max-width: 480px)"/>
+		<script src="/js/jquery-3.5.1.min.js"></script>
+		<script src="https://kit.fontawesome.com/020d9bf91a.js" crossorigin="anonymous"></script>
+		<script src="/js/userLogic.js"></script>
+	</head>
+
+	<script>
+
+		$(function () {
+			$("#header").load("assets/user_nav.html");
+			$("#footer").load("assets/footer.html");
+			$("#consulta").load("assets/consulta.html");
+			$("<span class='focus-border'></span>").insertAfter(".box");
+			$("<div class='radio-mark'></div>").insertAfter(".radio");
+		});
+
+	</script>
+
+	<body class="user_body normal-user-body">
+		<div class="nrmluser-header" id="header"></div>
+		
+		<div id="user-content" class="">
+			
+			<ul class="side-menu">
+				<li id="list-title">Cursos y Actividades</li>
+					<ul class="sub-menu" id="sub-menu1">
+                        <li class="item">Registro</li>
+					</ul>
+					<ul class="sub-menu" id="sub-menu2">
+                        <li class="item" >Consulta</li>
+					</ul>
+				
+			</ul>
+
+			<div class="wrapper" id="frm_user_wrapper">
+				<form id="frm-reg-nino">
+					<h1>Registre a su hijo</h1>
+					<h5 class="req" id="notice">Los campos marcados con * son obligatorios</h5>
+	
+					<div class="container-inptbxs" id="container-input-reg">
+						<p>
+							<label class="req" for="name1">Nombre del niño *</label>
+							<input type="text" class="name_ninos box" name="name1" id="name1"
+							autofocus
+							autocomplete
+							required>
+						</p>
+
+						<p>
+							<label class="req" for="apell1">Apellido del niño *</label>
+							<input type="text" class="apell_ninos box" name="apell1" id="apell1"
+							autofocus
+							autocomplete
+							required>
+						</p>
+
+						<p class="smalltxt">
+							<label class="req" for="edad1">Edad del niño</label>
+							<input type="range" class="edad_ninos number" min="8" max="14" placeholder="8" name="edad1"
+							id="edad1"
+							value="8" 
+							required 
+							oninput="this.nextElementSibling.value = this.value">
+							<output class="range-value" id="edad-nino-out">8</output>
+						</p>
+
+						<p class="smalltxt">
+							<label class="req" for="time_av1">Tiempo disponible del niño</label>
+							<input type="range" class="time_ninos number" min="2" max="4" placeholder="2" name="time1"
+							id="time1"
+							value="2" 
+							required
+							oninput="this.nextElementSibling.value = this.value">
+							<output class="range-value" id="tmpdisp-ninos-out">2</output>
+						</p>
+
+						<p>
+						<label id="cuso-label" for="cursos"> Seleccione un curso</label>
+						</p>
+						<p id="cursos-p">
+							<fieldset class="cursos">
+								<label id="ajedrez"><input type="radio" class="radio" name="curso" value="ajedrez" checked> Ajedrez </label>
+								<label id="guitarra"><input type="radio" class="radio" name="curso" value="guitarra"> Guitarra </label>
+								<label id="dibypint"><input type="radio" class="radio" name="curso" value="dibj&pnt"> Dibujo y pintura </label>
+								<label id="piano"><input type="radio" class="radio" name="curso" value="piano"> Piano </label>
+							</fieldset>
+						</p>
+					</div>
+					
+					<input  class="submit" id="submit_reg_hijo" type="submit" value="Registrar">
+
+				</form>
+			</div>
+
+			<div id="consulta"></div>
+
+		</div>
+
+		<div id="footer"></div>
+	</body>
+</html>

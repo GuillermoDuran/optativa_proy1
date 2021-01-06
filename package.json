@@ -1,0 +1,24 @@
+{
+  "name": "proyecto1",
+  "version": "1.0.0",
+  "description": "client side aplication",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/GuillermoDuran/optativa_proy1.git"
+  },
+  "keywords": [
+    "proyecto",
+    "optativa",
+    "tensai"
+  ],
+  "author": "Guillermo Duran",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/GuillermoDuran/optativa_proy1/issues"
+  },
+  "homepage": "https://github.com/GuillermoDuran/optativa_proy1#readme"
+}

@@ -98,3 +98,9 @@ li, a, button {
     margin-bottom: 15px;
     width: 200px;
 }
+
+/*Color de nav para usuario normal*/
+
+.nrmluser-header #user_header {
+    background-color: #E37D24;
+}
