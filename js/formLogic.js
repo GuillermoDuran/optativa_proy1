@@ -6,7 +6,6 @@ window.onload = function () {
             .replace(/[*]/g, '<span style="color: #E37D24; font-weight: 600;">*</span>');
     }
 
-    let submit = document.getElementById("submit_reg");
     let form = document.getElementById('reg_frm');
 
     let popup = document.getElementById("popup").children[0];
@@ -16,7 +15,7 @@ window.onload = function () {
 
     popupClose.addEventListener("click", function () {
         popup.classList.toggle("active");
-    })
+    });
 
     let popo = document.getElementById('popo')
 
@@ -115,13 +114,9 @@ window.onload = function () {
     }
 
     /*Almacenamiento de los valores*/
-    submit.onclick = function () {
-
-
-
-    }
-
     form.addEventListener("submit", function (e) {
+
+        e.preventDefault();
 
         document.body.style.cursor = 'wait';
 
@@ -139,10 +134,8 @@ window.onload = function () {
             password:pswd.value,
             telefono:telf.value,
             correo:mail.value,
-            tipo:"nomal"
+            tipo:"normal"
         };
-
-        e.preventDefault();
 
         /*Obtenemos la base de datos*/ 
         var database = firebase.database();
@@ -152,6 +145,11 @@ window.onload = function () {
         /*Verifica existencia de la cedula*/
         ref.transaction(function(currentData) {
             if (currentData === null) {
+                auth
+                    .createUserWithEmailAndPassword(mail.value, pswd.value)
+                    .then(userCredential => {
+                        console.log("exito");
+                    });
                 return valores;
             }else{
                 return;
@@ -162,12 +160,12 @@ window.onload = function () {
                 popupTitle.innerText = "Error";
                 popupMessage.innerText = "Sucedio un error";
                 popup.classList.toggle("active");
-                console.log(error);
             }else if (!committed) {
                 document.body.style.cursor = 'default';
                 cedula.setCustomValidity("Ya existe un usuario con ese número de cédula!");
                 return false;
             }else{
+                sessionStorage.setItem("id", cedula.value);
                 window.location = '/normal_user.html';
                 document.body.style.cursor = 'default';
             }

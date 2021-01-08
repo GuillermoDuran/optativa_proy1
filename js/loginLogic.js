@@ -3,7 +3,15 @@ window.onload = function () {
     var mail = document.getElementById("login_mail");
     var pswd = document.getElementById("login_pswd");
     var form = document.getElementById("login_frm");
-    var submit = document.getElementById("submit_login");
+
+    let popup = document.getElementById("popup").children[0];
+    let popupClose = popup.children[0].children[0].children[0];
+    let popupTitle = popup.children[0].children[0].children[1];
+    let popupMessage = popup.children[0].children[0].children[2];
+
+    popupClose.addEventListener("click", function () {
+        popup.classList.toggle("active");
+    });
 
     pswd.oninput = function () {
 
@@ -19,19 +27,52 @@ window.onload = function () {
         
     }
 
+
+    function authUser () {
+        var userId;
+        var userType;
+
+        var ref = firebase.database().ref('users/');
+
+        auth
+            .signInWithEmailAndPassword(mail.value, pswd.value)
+            .then(userCredential => {
+                ref.once('value')
+                .then(function (snapshot) {
+                    var childKeys = Object.keys(snapshot.val());
+                    for (i = 0; i < childKeys.length; i++) {
+                        var userMail = snapshot.child(childKeys[i] + "/correo").val();
+                        if (userMail == mail.value) {
+                            userId = childKeys[i]
+                            userType = snapshot.child(childKeys[i] + "/tipo").val();
+                            break;
+                        }
+                    }
+                    sessionStorage.setItem("id", userId)
+                    if(userType === "normal") {
+                        document.body.style.cursor = 'default';
+                        window.location = '/normal_user.html';
+                    } else {
+                        document.body.style.cursor = 'default';
+                        window.location = '/admin_user.html';
+                    }
+                });
+            })
+            .catch((error) => {
+                document.body.style.cursor = 'default';
+                popupTitle.innerText = "Error :(";
+                popupMessage.innerText = "No existe el usuario! Verifique que escribio bien los datos.";
+                popup.classList.toggle("active");
+            });
+    }
+
     form.addEventListener("submit", function (e) {
-        if (mail.value.length != 0 && pswd.value.length >= 6 && 
-            /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/.test(mail.value) &&
-            /(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[!@#\$%\^&\*]).{6,}/.test(pswd.value)){
-            if(mail.value =="usuario@admin.com" && pswd.value =="pO@1234") {
-                e.preventDefault()
-                window.location = '/admin_user.html';
-            }else{
-                form.action = "/normal_user.html";
-                e.preventDefault()
-                window.location = '/normal_user.html';
-            }
-        }
+        
+        e.preventDefault()
+
+        document.body.style.cursor = 'wait';
+
+        authUser();
 
     })
 

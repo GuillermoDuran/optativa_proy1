@@ -6,12 +6,13 @@ window.onload = function () {
             .replace(/[*]/g, '<span style="color: #E37D24; font-weight: 600;">*</span>');
     }
     
-    var sessionValues = JSON.parse(sessionStorage.getItem("sessionValues"));
+    var id = sessionStorage.getItem("id")
+
+    console.log(id)
+
     var usr_nam = document.getElementById("nombre-usr");
 
-    usr_nam.innerText = sessionValues[0] + " " + sessionValues[1];
-
-    console.log(sessionValues)
+    
 
     var submit = document.getElementById("submit_reg_hijo");
     var form = document.getElementById("frm-reg-nino");
