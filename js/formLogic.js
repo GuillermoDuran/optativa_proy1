@@ -1,5 +1,8 @@
 window.onload = function () {
 
+    /*Obtenemos la base de datos*/ 
+    var database = firebase.database();
+
     const reqs = document.getElementsByClassName("req");
     for (const req of reqs) {
         req.innerHTML = req.innerHTML
@@ -21,6 +24,8 @@ window.onload = function () {
 
     var cedula = document.getElementById("id");
     var contrasena = document.getElementById("passwd");
+    var mail = document.getElementById("email");
+    var pswd = document.getElementById("passwd");
 
     /*Validacion de la cedula*/
     cedula.oninput = function () {
@@ -113,6 +118,23 @@ window.onload = function () {
         }
     }
 
+    mail.addEventListener("input", () => {
+        var ref = database.ref('users');
+        ref.once('value')
+            .then(function (snapshot) {
+                var childKeys = Object.keys(snapshot.val());
+                for (i = 0; i < childKeys.length; i++) {
+                    var userMail = snapshot.child(childKeys[i] + "/correo").val();
+                    if (userMail == mail.value) {
+                        mail.setCustomValidity("Ya existe un usuario con ese correo!");
+                        break;
+                    }else{
+                        mail.setCustomValidity("");
+                    }
+                }
+            })
+    })
+
     /*Almacenamiento de los valores*/
     form.addEventListener("submit", function (e) {
 
@@ -123,9 +145,7 @@ window.onload = function () {
         /*obtener los valores*/
         var nombre_padre = document.getElementById("name");
         var apell_padre = document.getElementById("lstname");
-        var pswd = document.getElementById("passwd");
         var telf = document.getElementById("phone");
-        var mail = document.getElementById("email");
             
         /*Creamos el objeto con los valores a guardar*/
         var valores = {
@@ -137,21 +157,18 @@ window.onload = function () {
             tipo:"normal"
         };
 
-        /*Obtenemos la base de datos*/ 
-        var database = firebase.database();
-
         var ref = database.ref('users/' + cedula.value);
 
-        /*Verifica existencia de la cedula*/
         ref.transaction(function(currentData) {
-            if (currentData === null) {
+            cedula.setCustomValidity("");
+            if (currentData === null ) {
                 auth
-                    .createUserWithEmailAndPassword(mail.value, pswd.value)
-                    .then(userCredential => {
-                        console.log("exito");
-                    });
+                    .createUserWithEmailAndPassword(mail.value, pswd.value);
+                cedula.setCustomValidity("");
                 return valores;
             }else{
+                console.log("2");
+                cedula.setCustomValidity("Ya existe un usuario con ese número de cédula!");
                 return;
             } 
         }, function (error, committed, snapshot) {
@@ -161,8 +178,8 @@ window.onload = function () {
                 popupMessage.innerText = "Sucedio un error";
                 popup.classList.toggle("active");
             }else if (!committed) {
+                console.log("3")
                 document.body.style.cursor = 'default';
-                cedula.setCustomValidity("Ya existe un usuario con ese número de cédula!");
                 return false;
             }else{
                 sessionStorage.setItem("id", cedula.value);

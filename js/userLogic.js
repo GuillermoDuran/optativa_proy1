@@ -12,39 +12,45 @@ window.onload = function () {
 
     var usr_nam = document.getElementById("nombre-usr");
 
-    
+    var ref = firebase.database().ref('users/' + id);
+    var ninosRef = firebase.database().ref("users/" + id + "/ninos");
+    var ninos;
+
+    ref.once("value")
+        .then(function (snapshot) {
+            usr_nam.innerText = snapshot.child("nombre").val() + " " + snapshot.child("apellido").val();
+            ninos = snapshot.child("ninos").val();
+        })
+
 
     var submit = document.getElementById("submit_reg_hijo");
     var form = document.getElementById("frm-reg-nino");
     var consult_btn = document.getElementById("sub-menu2");
     var reg_btn = document.getElementById("sub-menu1");
 
-    form.addEventListener("submit", function (e) {
+    var nombres = document.getElementById("name1");
+    var apells = document.getElementById("apell1");
+    var edads = document.getElementById("edad1");
+    var tiempos = document.getElementById("time1");
+    var cursos = document.getElementsByName("curso");
 
-        var nombre_nino = document.getElementById("name1").value;
-        var apell_nino = document.getElementById("apell1").value;
-        var edad_nino = document.getElementById("edad1").value;
-        var tiempo_nino = document.getElementById("time1").value;
-        var curso_nino = document.getElementsByName("curso");
+    var curso;
 
-        var curso;
-
-        for(c = 0; c < curso_nino.length; c++) {
-            if(curso_nino[c].checked) {
-                curso = curso_nino[c].value;
+        for(c = 0; c < cursos.length; c++) {
+            if(cursos[c].checked) {
+                curso = cursos[c].value;
+                break;
             }
         }
 
-        sessionValues.push([nombre_nino, apell_nino, edad_nino, tiempo_nino, curso]);
+    form.addEventListener("submit", function (e) {
 
         e.preventDefault();
             escribirDatosNinos();
             document.body.style.cursor = 'wait';
-            setTimeout( function () {
             document.getElementById("frm_user_wrapper").style.display = "none";
             document.getElementById("consulta").style.display = "inherit";
             document.body.style.cursor = 'default';
-            }, 1500);
     });
 
     var nombre_nino = document.getElementsByName("name1-cons");
@@ -54,131 +60,208 @@ window.onload = function () {
     var curso_nino = document.getElementsByName("curso-nino-cons");
 
     var contaioner_cons = document.getElementsByName("container-input-cons");
-
-    if(sessionValues.length > 4) {
-        for(n = 4; n < sessionValues.length; n++) {
-            if(n + 1 == 5) {
-                var datos_nino = sessionValues[n]
-                nombre_nino[n-4].innerText = datos_nino[0];
-                apell_nino[n-4].innerText = datos_nino[1];
-                edad_nino[n-4].innerText = datos_nino[2];
-                tiempo_nino[n-4].innerText = datos_nino[3];
-                curso_nino[n-4].innerText = datos_nino[4];
-            }else{
-                contaioner_cons[n-5].insertAdjacentHTML("afterend", 
-                `<div class="container-inptbxs container-input-cons" name="container-input-cons">
-                    <p>
-                        <label class="req" for="name1">Nombre del niño</label>
-                        <span class="name_nino" name="name1-cons" id="name-nino"> Nombre nino </span>
-                    </p>
-        
-                    <p>
-                        <label class="req" for="apell1">Apellido del niño</label>
-                        <span class="apell_ninos" name="apell1-cons" id="apell-nino"> Apellido </span>
-                    </p>
-        
-                    <p>
-                        <label class="req" for="edad1">Edad del niño</label>
-                        <span class="edad_ninos" name="edad1-cons" id="edad-nino"> Edad nino </span>
-                    </p>
-        
-                    <p>
-                        <label class="req" for="time_av1">Tiempo disponible del niño</label>
-                        <span class="time_ninos" name="time_av1-cons" id="time_av_nino"> Tiempo </span>
-                    </p>
-        
-                    <p>
-                        <label class="req" for="curso-nino">Curso</label>
-                        <span class="curso-ninos" name="curso-nino-cons" id="curso-nino"> Curso nino </span>
-                    </p>
-                </div>`);
-                var datos_nino = sessionValues[n];
-                console.log(n)
-                nombre_nino[n-4].innerText = datos_nino[0];
-                apell_nino[n-4].innerText = datos_nino[1];
-                edad_nino[n-4].innerText = datos_nino[2];
-                tiempo_nino[n-4].innerText = datos_nino[3];
-                curso_nino[n-4].innerText = datos_nino[4];
-            }
-        }
-    }
-
-    function escribirDatosNinos () {
-        console.log(sessionValues)
-        console.log(sessionValues.length-5)
-        if(sessionValues.length == 5){
-            var datos_nino = sessionValues[4];
-            nombre_nino[sessionValues.length-5].innerText = datos_nino[0];
-            apell_nino[sessionValues.length-5].innerText = datos_nino[1];
-            edad_nino[sessionValues.length-5].innerText = datos_nino[2];
-            tiempo_nino[sessionValues.length-5].innerText = datos_nino[3];
-            curso_nino[sessionValues.length-5].innerText = datos_nino[4];
-            
-        }else{
-            contaioner_cons[sessionValues.length-6].insertAdjacentHTML("afterend", 
-            `<div class="container-inptbxs" name="container-input-cons">
-                <p>
-                    <label class="req" for="name1">Nombre del niño</label>
-                    <span class="name_nino" name="name1-cons" id="name-nino"> Nombre nino </span>
-                </p>
-    
-                <p>
-                    <label class="req" for="apell1">Apellido del niño</label>
-                    <span class="apell_ninos" name="apell1-cons" id="apell-nino"> Apellido </span>
-                </p>
-    
-                <p>
-                    <label class="req" for="edad1">Edad del niño</label>
-                    <span class="edad_ninos" name="edad1-cons" id="edad-nino"> Edad nino </span>
-                </p>
-    
-                <p>
-                    <label class="req" for="time_av1">Tiempo disponible del niño</label>
-                    <span class="time_ninos" name="time_av1-cons" id="time_av_nino"> Tiempo </span>
-                </p>
-    
-                <p>
-                    <label class="req" for="curso-nino">Curso</label>
-                    <span class="curso-ninos" name="curso-nino-cons" id="curso-nino"> Curso nino </span>
-                </p>
-            </div>`);
-            var datos_nino = sessionValues[sessionValues.length-1];
-            nombre_nino[sessionValues.length-5].innerText = datos_nino[0];
-            apell_nino[sessionValues.length-5].innerText = datos_nino[1];
-            edad_nino[sessionValues.length-5].innerText = datos_nino[2];
-            tiempo_nino[sessionValues.length-5].innerText = datos_nino[3];
-            curso_nino[sessionValues.length-5].innerText = datos_nino[4];
-        }
-
-        sessionStorage.setItem("sessionValues", JSON.stringify(sessionValues));
-
-        console.log(sessionValues);
-    }
     
     consult_btn.addEventListener("click", function () {
         document.getElementById("frm_user_wrapper").style.display = "none";
-
-        if(sessionValues == null || sessionValues.length < 5) {
+        if(ninos == null) {
             nombre_nino[0].innerText = "No hay datos";
             apell_nino[0].innerText = "No hay datos";
             edad_nino[0].innerText = "No hay datos";
             tiempo_nino[0].innerText = "No hay datos";
             curso_nino[0].innerText = "No hay datos";
         }/*else{
-            for(n = 4; n < sessionValues.length; n++){
-                var datos = sessionValues[n]
-                nombre_nino[n-4].innerText = datos[0]
-                apell_nino[n-4].innerText = datos[1]
-            }
+            ninosRef.once('value')
+            .then(function (snapshot) {
+                var childKeys = Object.keys(snapshot.val());
+                for (i = 0; i < childKeys.length; i++) {
+                    var ninoNombre = snapshot.child(childKeys[i] + "/nombre").val();
+                    var ninoApell = snapshot.child(childKeys[i] + "/apellido").val();
+                    var ninoEdad = snapshot.child(childKeys[i] + "/edad").val();
+                    var ninoTiempo = snapshot.child(childKeys[i] + "/tiempo").val();
+                    var ninoCurso = snapshot.child(childKeys[i] + "/curso").val();
+                    if (childKeys.length === 0) {
+                        userId = childKeys[i]
+                        nombre_nino[i].innerText = ninoNombre;
+                        apell_nino[i].innerText = ninoApell;
+                        edad_nino[i].innerText = ninoEdad;
+                        tiempo_nino[i].innerText = ninoTiempo;
+                        curso_nino[i].innerText = ninoCurso;
+                        break;
+                    }else{
+                        contaioner_cons[i].insertAdjacentHTML("afterend", 
+                        `<div class="container-inptbxs" name="container-input-cons">
+                            <p>
+                                <label class="req" for="name1">Nombre del niño</label>
+                                <span class="name_nino" name="name1-cons" id="name-nino"> Nombre nino </span>
+                            </p>
+                
+                            <p>
+                                <label class="req" for="apell1">Apellido del niño</label>
+                                <span class="apell_ninos" name="apell1-cons" id="apell-nino"> Apellido </span>
+                            </p>
+                
+                            <p>
+                                <label class="req" for="edad1">Edad del niño</label>
+                                <span class="edad_ninos" name="edad1-cons" id="edad-nino"> Edad nino </span>
+                            </p>
+                
+                            <p>
+                                <label class="req" for="time_av1">Tiempo disponible del niño</label>
+                                <span class="time_ninos" name="time_av1-cons" id="time_av_nino"> Tiempo </span>
+                            </p>
+                
+                            <p>
+                                <label class="req" for="curso-nino">Curso</label>
+                                <span class="curso-ninos" name="curso-nino-cons" id="curso-nino"> Curso nino </span>
+                            </p>
+                        </div>`);
+                        nombre_nino[i].innerText = ninoNombre;
+                        apell_nino[i].innerText = ninoApell;
+                        edad_nino[i].innerText = ninoEdad;
+                        tiempo_nino[i].innerText = ninoTiempo;
+                        curso_nino[i].innerText = ninoCurso;
+                    }
+                }
+            }).catch((error) => {
+                console.log(error);
+            });
         }*/
-
         document.getElementById("consulta").style.display = "inherit";
     });
+
+    function escribirDatosNinos () {
+
+        data = {
+            nombre: nombres.value,
+            apellido: apells.value,
+            edad: edads.value,
+            tiempoDisp: tiempos.value,
+            curso: curso
+        }
+
+        if(ninos == null) {
+            console.log(ninos)
+            ref.child("ninos").push().set(data);
+        }else{ 
+            ninosRef.once('value')
+            .then(function (snapshot) {
+                var childKeys = Object.keys(snapshot.val());
+                for (i = 0; i < childKeys.length; i++) {
+                    var ninoNombre = snapshot.child(childKeys[i] + "/nombre").val();
+                    var ninoApell = snapshot.child(childKeys[i] + "/apellido").val();
+                    var ninoEdad = snapshot.child(childKeys[i] + "/edad").val();
+                    var ninoTiempo = snapshot.child(childKeys[i] + "/tiempo").val();
+                    var ninoCurso = snapshot.child(childKeys[i] + "/curso").val();
+                    if (childKeys.length === 0) {
+                        userId = childKeys[i]
+                        nombre_nino[i].innerText = ninoNombre;
+                        apell_nino[i].innerText = ninoApell;
+                        edad_nino[i].innerText = ninoEdad;
+                        tiempo_nino[i].innerText = ninoTiempo;
+                        curso_nino[i].innerText = ninoCurso;
+                        break;
+                    }else{
+                        contaioner_cons[i].insertAdjacentHTML("afterend", 
+                        `<div class="container-inptbxs" name="container-input-cons">
+                            <p>
+                                <label class="req" for="name1">Nombre del niño</label>
+                                <span class="name_nino" name="name1-cons" id="name-nino"> Nombre nino </span>
+                            </p>
+                
+                            <p>
+                                <label class="req" for="apell1">Apellido del niño</label>
+                                <span class="apell_ninos" name="apell1-cons" id="apell-nino"> Apellido </span>
+                            </p>
+                
+                            <p>
+                                <label class="req" for="edad1">Edad del niño</label>
+                                <span class="edad_ninos" name="edad1-cons" id="edad-nino"> Edad nino </span>
+                            </p>
+                
+                            <p>
+                                <label class="req" for="time_av1">Tiempo disponible del niño</label>
+                                <span class="time_ninos" name="time_av1-cons" id="time_av_nino"> Tiempo </span>
+                            </p>
+                
+                            <p>
+                                <label class="req" for="curso-nino">Curso</label>
+                                <span class="curso-ninos" name="curso-nino-cons" id="curso-nino"> Curso nino </span>
+                            </p>
+                        </div>`);
+                        nombre_nino[i].innerText = ninoNombre;
+                        apell_nino[i].innerText = ninoApell;
+                        edad_nino[i].innerText = ninoEdad;
+                        tiempo_nino[i].innerText = ninoTiempo;
+                        curso_nino[i].innerText = ninoCurso;
+                    }
+                }
+            }).catch((error) => {
+                console.log(error);
+            });
+        }
+    }
 
     reg_btn.addEventListener("click", function () {
         document.getElementById("consulta").style.display = "none";
 
         document.getElementById("frm_user_wrapper").style.display = "inherit";
     });
+
+    ninosRef.once('value')
+        .then(function (snapshot) {
+            console.log(snapshot.val())
+            var childKeys = Object.keys(snapshot.val());
+            for (i = 0; i < childKeys.length; i++) {
+                var ninoNombre = snapshot.child(childKeys[i] + "/nombre").val();
+                var ninoApell = snapshot.child(childKeys[i] + "/apellido").val();
+                var ninoEdad = snapshot.child(childKeys[i] + "/edad").val();
+                var ninoTiempo = snapshot.child(childKeys[i] + "/tiempo").val();
+                var ninoCurso = snapshot.child(childKeys[i] + "/curso").val();
+                if (childKeys.indexOf(childKeys[i]) == 0) {
+                    userId = childKeys[i]
+                    nombre_nino[i].innerText = ninoNombre;
+                    apell_nino[i].innerText = ninoApell;
+                    edad_nino[i].innerText = ninoEdad;
+                    tiempo_nino[i].innerText = ninoTiempo;
+                    curso_nino[i].innerText = ninoCurso;
+                    break;
+                }else{
+                    contaioner_cons[i].insertAdjacentHTML("afterend", 
+                    `<div class="container-inptbxs" name="container-input-cons">
+                        <p>
+                            <label class="req" for="name1">Nombre del niño</label>
+                            <span class="name_nino" name="name1-cons" id="name-nino"> Nombre nino </span>
+                        </p>
+            
+                        <p>
+                            <label class="req" for="apell1">Apellido del niño</label>
+                            <span class="apell_ninos" name="apell1-cons" id="apell-nino"> Apellido </span>
+                        </p>
+            
+                        <p>
+                            <label class="req" for="edad1">Edad del niño</label>
+                            <span class="edad_ninos" name="edad1-cons" id="edad-nino"> Edad nino </span>
+                        </p>
+            
+                        <p>
+                            <label class="req" for="time_av1">Tiempo disponible del niño</label>
+                            <span class="time_ninos" name="time_av1-cons" id="time_av_nino"> Tiempo </span>
+                        </p>
+            
+                        <p>
+                            <label class="req" for="curso-nino">Curso</label>
+                            <span class="curso-ninos" name="curso-nino-cons" id="curso-nino"> Curso nino </span>
+                        </p>
+                    </div>`);
+                    nombre_nino[i].innerText = ninoNombre;
+                    apell_nino[i].innerText = ninoApell;
+                    edad_nino[i].innerText = ninoEdad;
+                    tiempo_nino[i].innerText = ninoTiempo;
+                    curso_nino[i].innerText = ninoCurso;
+                }
+            }
+        }).catch((error) => {
+            console.log(error);
+        });
 
 }
