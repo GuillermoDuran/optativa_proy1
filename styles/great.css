@@ -339,7 +339,7 @@ fieldset {
 
 #user-content {
 	display: grid;
-	grid-template-columns: 25% auto;
+	grid-template-columns: 27% auto;
 	height: 100%;
 }
 
@@ -381,10 +381,6 @@ fieldset {
 
 .sub-menu li{
 	color: #33055e;
-}
-
-.sub-menu ul li {
-	text-indent: 20%;
 }
 
 .sub-menu ul {

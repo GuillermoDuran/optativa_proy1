@@ -8,8 +8,6 @@ window.onload = function () {
     
     var id = sessionStorage.getItem("id")
 
-    console.log(id)
-
     var usr_nam = document.getElementById("nombre-usr");
 
     var ref = firebase.database().ref('users/' + id);
@@ -59,6 +57,7 @@ window.onload = function () {
     var edad_nino = document.getElementsByName("edad1-cons");
     var tiempo_nino = document.getElementsByName("time_av1-cons");
     var curso_nino = document.getElementsByName("curso-nino-cons");
+    var estado_sol = document.getElementsByName("estado-solicitud");
 
     var contaioner_cons = document.getElementsByName("container-input-cons");
     
@@ -71,6 +70,7 @@ window.onload = function () {
             edad_nino[0].innerText = "No hay datos";
             tiempo_nino[0].innerText = "No hay datos";
             curso_nino[0].innerText = "No hay datos";
+            estado_sol[0].innerText = "No hay datos";
         }
         document.getElementById("consulta").style.display = "inherit";
     });
@@ -83,7 +83,8 @@ window.onload = function () {
             apellido: apells.value,
             edad: edads.value,
             tiempoDisp: tiempos.value,
-            curso: curso
+            curso: curso,
+            estadoSol: "Por revisar"
         }
 
         if(ninos == null) {
@@ -142,6 +143,11 @@ window.onload = function () {
                         <label class="req" for="curso-nino">Curso</label>
                         <span class="curso-ninos" name="curso-nino-cons" id="curso-nino"> Curso nino </span>
                     </p>
+
+                    <p>
+                        <label class="req" for="estado-solicitud">Estado de solicitud</label>
+                        <span class="estado-nino" name="estado-solicitud" id="estado-nino"> Estado </span>
+                    </p>
                 </div>`);
                 snapshot.forEach(function(childSnap) {
                     nombre_nino[childKeys.length-1].innerText = childSnap.val().nombre;
@@ -149,6 +155,8 @@ window.onload = function () {
                     edad_nino[childKeys.length-1].innerText = childSnap.val().edad;
                     tiempo_nino[childKeys.length-1].innerText = childSnap.val().tiempoDisp;
                     curso_nino[childKeys.length-1].innerText = childSnap.val().curso;
+                    estado_sol[contaioner_cons.length-1].innerText = childSnap.val().estadoSol;
+                    estado_sol[contaioner_cons.length-1].style.color = "#E37D24";
                 })
             }));
         }
@@ -160,7 +168,7 @@ window.onload = function () {
         document.getElementById("frm_user_wrapper").style.display = "inherit";
     });
 
-    //MUESTRA LOS DATOS DE LA CONSULTA
+    //MUESTRA LOS DATOS DE LA CONSULTA AL CARGAR LA PAGINA
     ninosRef.once('value')
         .then(function (snapshot) {
             var childKeys = Object.keys(snapshot.val());
@@ -170,12 +178,22 @@ window.onload = function () {
                 var ninoEdad = snapshot.child(childKeys[i] + "/edad").val();
                 var ninoTiempo = snapshot.child(childKeys[i] + "/tiempoDisp").val();
                 var ninoCurso = snapshot.child(childKeys[i] + "/curso").val();
+                var estadoSol = snapshot.child(childKeys[i] + "/estadoSol").val();
+                
                 if (i === 0) {
+                    if(estadoSol == "Por revisar"){
+                        estado_sol[i].style.color = "#E37D24";
+                    }else if(estadoSol == "Aprobado"){
+                        estado_sol[i].style.color = "green";
+                    }else if(estadoSol == "Rechazado"){
+                        estado_sol[i].style.color = "red";
+                    }
                     nombre_nino[i].innerText = ninoNombre;
                     apell_nino[i].innerText = ninoApell;
                     edad_nino[i].innerText = ninoEdad;
                     tiempo_nino[i].innerText = ninoTiempo;
                     curso_nino[i].innerText = ninoCurso;
+                    estado_sol[i].innerText = estadoSol;
                 }else{
                     contaioner_cons[contaioner_cons.length-1].insertAdjacentHTML("afterend", 
                     `<div class="container-inptbxs" name="container-input-cons">
@@ -203,12 +221,25 @@ window.onload = function () {
                             <label class="req" for="curso-nino">Curso</label>
                             <span class="curso-ninos" name="curso-nino-cons" id="curso-nino"> Curso nino </span>
                         </p>
+
+                        <p>
+                            <label class="req" for="estado-solicitud">Estado de solicitud</label>
+                            <span class="estado-nino" name="estado-solicitud" id="estado-nino"> Estado </span>
+                        </p>
                     </div>`);
+                    if(estadoSol == "Por revisar"){
+                        estado_sol[contaioner_cons.length-1].style.color = "#E37D24";
+                    }else if(estadoSol == "Aprobado"){
+                        estado_sol[contaioner_cons.length-1].style.color = "green";
+                    }else if(estadoSol == "Rechazado"){
+                        estado_sol[contaioner_cons.length-1].style.color = "red";
+                    }
                     nombre_nino[contaioner_cons.length-1].innerText = ninoNombre;
                     apell_nino[contaioner_cons.length-1].innerText = ninoApell;
                     edad_nino[contaioner_cons.length-1].innerText = ninoEdad;
                     tiempo_nino[contaioner_cons.length-1].innerText = ninoTiempo;
                     curso_nino[contaioner_cons.length-1].innerText = ninoCurso;
+                    estado_sol[contaioner_cons.length-1].innerText = estadoSol;
                 }
             }
         }).catch((error) => {

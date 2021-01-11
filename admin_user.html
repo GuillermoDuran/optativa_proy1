@@ -10,6 +10,11 @@
 		<link href="styles/mini.css" rel="stylesheet" type="text/css" media="screen and (max-width: 480px)"/>
 		<script src="/js/jquery-3.5.1.min.js"></script>
 		<script src="https://kit.fontawesome.com/020d9bf91a.js" crossorigin="anonymous"></script>
+		<script src="https://www.gstatic.com/firebasejs/8.2.1/firebase-app.js"></script>
+		<script src="https://www.gstatic.com/firebasejs/8.2.1/firebase-database.js"></script>
+		<script src="https://www.gstatic.com/firebasejs/8.2.1/firebase-auth.js"></script>
+		<script src="/js/adminLogic.js"></script>
+		<script src="/js/config.js"></script>
 	</head>
 
 	<script>
@@ -41,36 +46,28 @@
 					<ul class="sub-menu">
 						<li class="item" id="sub-mn-pend">Pendientes</li>
 							<ul id="pend-items">
-								<li>Solicitud1</li>
-								<li>Solicitud1</li>
+								<li name="side-menu-pend-id"></li>
 							</ul>
 						<li class="item" id="sub-mn-acpt">Aceptadas</li>
 							<ul id="acpt-items">
-								<li>Solicitud1</li>
-								<li>Solicitud1</li>
+								<li name="side-menu-acpt-id"></li>
 							</ul>
 						<li class="item" id="sub-mn-rchz">Rechazadas</li>
 							<ul id="rchz-items">
-								<li>Solicitud1</li>
-								<li>Solicitud1</li>
+								<li name="side-menu-rch-id"></li>
 							</ul>
 					</ul>
 				
 			</ul>
 
 			<div class="wrapper" id="frm_reg_wrapper">
-				<form>
-					<h1>Solicitud1</h1>
-	
+				<form id="form-solicitudes">
+					<h1>Pendientes</h1>
+					<h2 id="id-solicitud"></h2>
 					<div class="container-inptbxs" id="container-input-reg">
 						<p>
 							<label class="req" for="name">Nombre del padre </label>
 							<span class="" name="name" id="name"> Nombre padre </span>
-						</p>
-						
-						<p>
-							<label class="req" for="name">Apellido del padre </label>
-							<span class="" name="lstname" id="lstname"> Apellido padre </span>
 						</p>
 	
 						<p class="smalltxt">
@@ -93,11 +90,6 @@
 							<span name="name1" id="name1"> Nombre </span>
 						</p>
 	
-						<p>
-							<label class="req" for="apell1">Apellido del niño</label>
-							<span  class="" name="apell1" id="apell1"> Apellido </span>
-						</p>
-	
 						<p class="smallertxt">
 							<label class="req" for="edad1">Edad del niño</label>
 							<span class="" name="edad1" id="edad1"> Edad </span>
@@ -109,18 +101,19 @@
 						</p>
 	
 						<p>
-							<label for="curso"> Seleccione un curso</label>
+							<label for="curso"> Curso</label>
 							<span name="curso" id="cursos-admin"> Curso </span>
 						</p>
+
+						<div class="adm-btn-wrapper">
+							<button class="adm-btn" id="acpt-btn"><i class="fas fa-check"></i> Aceptar </button>
+							<button class="adm-btn" id="rjct-btn"><i class="fas fa-times"></i> Rechazar </button>
+						</div>
 							
 					</div>
 
 				</form>
 
-				<div class="adm-btn-wrapper">
-					<button class="adm-btn" id="acpt-btn"><i class="fas fa-check"></i> Aceptar </button>
-					<button class="adm-btn" id="rjct-btn"><i class="fas fa-times"></i> Rechazar </button>
-				</div>
 			</div>
 
 		</div>
