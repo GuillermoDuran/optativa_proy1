@@ -5,9 +5,9 @@
 		<title>Registro</title>
 		<link href="styles/colors.css"stylesheet type="text/css"/>
 		<link href="styles/base.css" rel="stylesheet" type="text/css"/>
-		<link href="styles/great.css" rel="stylesheet" type="text/css" media="screen and (min-width: 981px)"/>
-		<link href="styles/medium.css" rel="stylesheet" type="text/css" media="screen and (min-width: 481px) and (max-width:980px)"/>
-		<link href="styles/mini.css" rel="stylesheet" type="text/css" media="screen and (max-width: 480px)"/>
+		<link href="styles/great.css" rel="stylesheet" type="text/css"/>
+		<!--link href="styles/medium.css" rel="stylesheet" type="text/css" media="screen and (min-width: 481px) and (max-width:980px)"/>
+		<link href="styles/mini.css" rel="stylesheet" type="text/css" media="screen and (max-width: 480px)"/-->
 		<script src="/js/jquery-3.5.1.min.js"></script>
 		<script src="https://kit.fontawesome.com/020d9bf91a.js" crossorigin="anonymous"></script>
 		<script src="https://www.gstatic.com/firebasejs/8.2.1/firebase-app.js"></script>
@@ -32,6 +32,7 @@
 			$("#sub-mn-rchz").click(function (){
 				$('.sub-menu #rchz-items').toggleClass("show2");
 			});
+			$("#popup").load("assets/popup.html");
 		});
 
 	</script>
@@ -46,15 +47,15 @@
 					<ul class="sub-menu">
 						<li class="item" id="sub-mn-pend">Pendientes</li>
 							<ul id="pend-items">
-								<li name="side-menu-pend-id"></li>
+								<li name="side-menu-pend-id" class="side-menu-pend-id" data-nino="" data-padre=""></li>
 							</ul>
 						<li class="item" id="sub-mn-acpt">Aceptadas</li>
 							<ul id="acpt-items">
-								<li name="side-menu-acpt-id"></li>
+								<li name="side-menu-acpt-id" class="side-menu-acpt-id" data-nino="" data-padre=""></li>
 							</ul>
-						<li class="item" id="sub-mn-rchz">Rechazadas</li>
+						<li class="item" id="sub-mn-rchz" >Rechazadas</li>
 							<ul id="rchz-items">
-								<li name="side-menu-rch-id"></li>
+								<li name="side-menu-rch-id" class="side-menu-rchz-id" data-nino="" data-padre=""></li>
 							</ul>
 					</ul>
 				
@@ -62,7 +63,7 @@
 
 			<div class="wrapper" id="frm_reg_wrapper">
 				<form id="form-solicitudes">
-					<h1>Pendientes</h1>
+					<h1 id="frm-title">Pendiente</h1>
 					<h2 id="id-solicitud"></h2>
 					<div class="container-inptbxs" id="container-input-reg">
 						<p>
@@ -120,4 +121,6 @@
 
 		<div id="footer"></div>
 	</body>
+
+	<div id="popup"></div>
 </html>

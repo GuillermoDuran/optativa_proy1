@@ -338,8 +338,8 @@ fieldset {
 }
 
 #user-content {
-	display: grid;
-	grid-template-columns: 27% auto;
+	display: flex;
+	/*grid-template-columns: 27% auto;*/
 	height: 100%;
 }
 
@@ -355,7 +355,15 @@ fieldset {
 }
 
 #user-content .side-menu {
+	min-height: 690px;
+	max-height: 690px;
+	width: 40%;
 	border-right: solid 1px #33055e;
+	overflow: auto;
+}
+
+#user-content #frm_reg_wrapper {
+	height: 645px;
 }
 
 .side-menu #list-title {
