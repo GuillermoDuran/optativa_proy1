@@ -11,10 +11,10 @@ window.onload = function () {
 
     let form = document.getElementById('reg_frm');
 
-    let popup = document.getElementById("popup").children[0];
-    let popupClose = popup.children[0].children[0].children[0];
-    let popupTitle = popup.children[0].children[0].children[1];
-    let popupMessage = popup.children[0].children[0].children[2];
+    let popup = document.getElementById("overlay");
+    let popupClose = document.getElementById("close-btn");
+    let popupTitle = document.getElementById("alert-title");
+    let popupMessage = document.getElementById("alert-message");
 
     popupClose.addEventListener("click", function () {
         popup.classList.toggle("active");
