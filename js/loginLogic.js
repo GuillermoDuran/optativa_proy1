@@ -13,6 +13,7 @@ window.onload = function () {
         popup.classList.toggle("active");
     });
 
+    //Validacion de la contrasena
     pswd.oninput = function () {
 
         if(/(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[!@#\$%\^&\*]).{6,}/.test(pswd.value)) {
@@ -27,7 +28,7 @@ window.onload = function () {
         
     }
 
-
+    //
     function authUser () {
         var userId;
         var userType;

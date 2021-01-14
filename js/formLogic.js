@@ -132,6 +132,8 @@ window.onload = function () {
                         mail.setCustomValidity("");
                     }
                 }
+            }).catch((e) => {
+                console.log(e);
             })
     })
 
@@ -160,14 +162,32 @@ window.onload = function () {
         var ref = database.ref('users/' + cedula.value);
 
         ref.transaction(function(currentData) {
+            mail.setCustomValidity("");
             cedula.setCustomValidity("");
+            pswd.setCustomValidity("");
             if (currentData === null ) {
                 auth
-                    .createUserWithEmailAndPassword(mail.value, pswd.value);
+                    .createUserWithEmailAndPassword(mail.value, pswd.value)
+                        .catch((e) => {
+                            switch (e.code) {
+                                case "ERROR_INVALID_EMAIL":
+                                    mail.setCustomValidity("Mal formato del correo.");
+                                    break;
+
+                                case "ERROR_ACCOUNT_EXISTS_WITH_DIFFERENT_CREDENTIAL":
+                                    mail.setCustomValidity("Ya existe el correo.");
+                                    break;
+
+                                case "ERROR_WEAK_PASSWORD":
+                                    pswd.setCustomValidity("La base de datos rechazo la clave. Clave muy debil.");
+                                    break;
+
+                            }
+                            return;
+                        });
                 cedula.setCustomValidity("");
                 return valores;
             }else{
-                console.log("2");
                 cedula.setCustomValidity("Ya existe un usuario con ese número de cédula!");
                 return;
             } 
@@ -178,9 +198,7 @@ window.onload = function () {
                 popupMessage.innerText = "Sucedio un error";
                 popup.classList.toggle("active");
             }else if (!committed) {
-                console.log("3")
                 document.body.style.cursor = 'default';
-                return false;
             }else{
                 sessionStorage.setItem("id", cedula.value);
                 window.location = '/normal_user.html';
