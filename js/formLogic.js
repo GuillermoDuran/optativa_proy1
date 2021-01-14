@@ -11,16 +11,16 @@ window.onload = function () {
 
     let form = document.getElementById('reg_frm');
 
-    let popup = document.getElementById("overlay");
-    let popupClose = document.getElementById("close-btn");
-    let popupTitle = document.getElementById("alert-title");
-    let popupMessage = document.getElementById("alert-message");
+    const popup = document.getElementById("overlay");
+    const popupClose = document.getElementById("close-btn");
+    const popupTitle = document.getElementById("alert-title");
+    const popupMessage = document.getElementById("alert-message");
 
-    popupClose.addEventListener("click", function () {
-        popup.classList.toggle("active");
-    });
-
-    let popo = document.getElementById('popo')
+    if(popup) {
+        popupClose.addEventListener("click", function () {
+            popup.classList.toggle("active");
+        });
+    }
 
     var cedula = document.getElementById("id");
     var contrasena = document.getElementById("passwd");
@@ -133,7 +133,7 @@ window.onload = function () {
                     }
                 }
             }).catch((e) => {
-                console.log(e);
+                
             })
     })
 

@@ -330,7 +330,7 @@ fieldset {
 /*Usuario Normal*/
 
 #user-content #normal-side-menu  {
-	min-height: 100%;
+	/*min-height: 100%;*/
 	max-height: 100%;
 	max-width: 300px;
 }
@@ -540,6 +540,8 @@ fieldset {
 
 #consulta_user_wrapper {
 	width: 100%;
+	max-height: 712px;
+	overflow: auto;
 }
 
 #consulta_user_wrapper .container-inptbxs p {

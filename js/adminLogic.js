@@ -1,3 +1,4 @@
+document.addEventListener("DOMContentLoaded", function () {
 window.onload = () => {
 
     //id de la solicitud
@@ -26,14 +27,16 @@ window.onload = () => {
     let frm_title = document.getElementById('frm-title');
 
     //Popup
-    let popup = document.getElementById("popup").children[0];
-    let popupClose = popup.children[0].children[0].children[0];
-    let popupTitle = popup.children[0].children[0].children[1];
-    let popupMessage = popup.children[0].children[0].children[2];
+    const popup = document.getElementById("overlay");
+    const popupClose = document.getElementById("close-btn");
+    const popupTitle = document.getElementById("alert-title");
+    const popupMessage = document.getElementById("alert-message");
 
-    popupClose.addEventListener("click", function () {
-        popup.classList.toggle("active");
-    });
+    if(popup) {
+        popupClose.addEventListener("click", function () {
+            popup.classList.toggle("active");
+        });
+    }
 
     //Obtiene el id del usuario
     var id = sessionStorage.getItem("id")
@@ -46,13 +49,15 @@ window.onload = () => {
     var usersRef = firebase.database().ref('/users');
 
     //Carga el nombre del usuario
+    if(usr_nam) {
     ref.once('value')
         .then((snapshot) => {
             usr_nam.innerText = snapshot.child('nombre').val() + " " + snapshot.child('apellido').val();
         })
         .catch((error) => {
-            console.log(error)
+            
         })
+    }
 
     //Cargamos las solicitudes pendientes en el menu lateral y muestra la primera en el cuerpo de la pagina
     const cargarSolicitudes = () => {
@@ -246,7 +251,6 @@ window.onload = () => {
                 acpt_items.style.display = "none";
             }
         }).catch((e) => {
-            console.log(e);
             popupTitle.innerText = "Error :(";
             popupMessage.innerText = "Ocurrio un erro.";
             popup.classList.toggle("active");
@@ -261,7 +265,6 @@ window.onload = () => {
         var updates = {};
         updates[solicitudKeys[0] + "/ninos/" + solicitudKeys[1] + "/estadoSol"] = "Aprobado";
         return usersRef.update(updates).catch((e) => {
-            console.log(e);
             popupTitle.innerText = "Error :(";
             popupMessage.innerText = "Ocurrio un error.";
             popup.classList.toggle("active");
@@ -273,7 +276,6 @@ window.onload = () => {
         var updates = {};
         updates[solicitudKeys[0] + "/ninos/" + solicitudKeys[1] + "/estadoSol"] = "Rechazado";
         return usersRef.update(updates).catch((e) => {
-            console.log(e);
             popupTitle.innerText = "Error :(";
             popupMessage.innerText = "Ocurrio un error.";
             popup.classList.toggle("active");
@@ -291,3 +293,4 @@ window.onload = () => {
     })
 
 }
+})

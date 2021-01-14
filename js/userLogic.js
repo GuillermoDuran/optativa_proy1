@@ -1,3 +1,4 @@
+document.addEventListener("DOMContentLoaded", function () {
 window.onload = function () {
 
     const reqs = document.getElementsByClassName("req");
@@ -14,11 +15,13 @@ window.onload = function () {
     var ninosRef = firebase.database().ref("users/" + id + "/ninos");
     var ninos;
 
-    ref.once("value")
-        .then(function (snapshot) {
-            usr_nam.innerText = snapshot.child("nombre").val() + " " + snapshot.child("apellido").val();
-            ninos = snapshot.child("ninos").val();
-        })
+    if(usr_nam) {
+        ref.once("value")
+            .then(function (snapshot) {
+                usr_nam.innerText = snapshot.child("nombre").val() + " " + snapshot.child("apellido").val();
+                ninos = snapshot.child("ninos").val();
+            })
+    }
 
 
     var submit = document.getElementById("submit_reg_hijo");
@@ -88,31 +91,31 @@ window.onload = function () {
         }
 
         if(ninos == null) {
-            console.log(ninos)
             ref.child("ninos").push().set(data)
                 .then(ninosRef.once('value')
                 .then(function (snapshot) {
                     var childKeys = Object.keys(snapshot.val());
-                    console.log(childKeys.length)
                     var ninoNombre = snapshot.child(childKeys[0] + "/nombre").val();
                     var ninoApell = snapshot.child(childKeys[0] + "/apellido").val();
                     var ninoEdad = snapshot.child(childKeys[0] + "/edad").val();
                     var ninoTiempo = snapshot.child(childKeys[0] + "/tiempoDisp").val();
                     var ninoCurso = snapshot.child(childKeys[0] + "/curso").val();
+                    var estadoSol = snapshot.child(childKeys[0] + "/estadoSol").val();
                     nombre_nino[0].innerText = ninoNombre;
                     apell_nino[0].innerText = ninoApell;
                     edad_nino[0].innerText = ninoEdad;
                     tiempo_nino[0].innerText = ninoTiempo;
                     curso_nino[0].innerText = ninoCurso;
+                    estado_sol[0].style.color = "#E37D24";
+                    estado_sol[0].innerText = estadoSol;
                 }).catch((e) => {
-                    console.log(e);
+                    
                 })
                 .then(ref.once("value")
                 .then(function (snapshot) {
                     ninos = snapshot.child("ninos").val();
                 })));
         }else{ 
-            console.log(ninos)
             ref.child("ninos").push().set(data)
             .then(ninosRef.once('value')
             .then(function (snapshot) {
@@ -243,7 +246,8 @@ window.onload = function () {
                 }
             }
         }).catch((error) => {
-            console.log(error);
+
         });
 
 }
+})

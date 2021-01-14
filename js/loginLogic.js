@@ -4,14 +4,16 @@ window.onload = function () {
     var pswd = document.getElementById("login_pswd");
     var form = document.getElementById("login_frm");
 
-    let popup = document.getElementById("popup").children[0];
-    let popupClose = popup.children[0].children[0].children[0];
-    let popupTitle = popup.children[0].children[0].children[1];
-    let popupMessage = popup.children[0].children[0].children[2];
+    const popup = document.getElementById("overlay");
+    const popupClose = document.getElementById("close-btn");
+    const popupTitle = document.getElementById("alert-title");
+    const popupMessage = document.getElementById("alert-message");
 
-    popupClose.addEventListener("click", function () {
-        popup.classList.toggle("active");
-    });
+    if (popup) {
+        popupClose.addEventListener("click", function () {
+            popup.classList.toggle("active");
+        });
+    }
 
     //Validacion de la contrasena
     pswd.oninput = function () {
