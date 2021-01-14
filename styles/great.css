@@ -62,8 +62,8 @@ input[type=submit], .in_content_btn {
 	height: 4em;
 	margin-left: auto;
 	margin-right: auto;
-	margin-top: 3em;
-	margin-bottom: 3em;
+	margin-top: 2px;
+	margin-bottom: 5px;
 }
 
 input[type=submit]:hover, .in_content_btn:hover {
@@ -327,6 +327,19 @@ fieldset {
 	font-size: large;
 }
 
+/*Usuario Normal*/
+
+#user-content #normal-side-menu  {
+	min-height: 100%;
+	max-height: 100%;
+	max-width: 300px;
+}
+
+.normal-usr-wrapper {
+	min-height: 700px;
+}
+
+
 /*Pagina de administracion*/
 
 .user_body {
@@ -339,7 +352,6 @@ fieldset {
 
 #user-content {
 	display: flex;
-	/*grid-template-columns: 27% auto;*/
 	height: 100%;
 }
 
@@ -520,6 +532,14 @@ fieldset {
 /*Para usuario normal*/
 #consulta_user_wrapper .container-inptbxs label {
 	color: #3F0674;
+}
+
+#consulta {
+	width: 100%;
+}
+
+#consulta_user_wrapper {
+	width: 100%;
 }
 
 #consulta_user_wrapper .container-inptbxs p {

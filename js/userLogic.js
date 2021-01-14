@@ -47,7 +47,7 @@ window.onload = function () {
         e.preventDefault();
             escribirDatosNinos();
             document.body.style.cursor = 'wait';
-            document.getElementById("frm_user_wrapper").style.display = "none";
+            document.getElementById("frm_reg_wrapper").style.display = "none";
             document.getElementById("consulta").style.display = "inherit";
             document.body.style.cursor = 'default';
     });
@@ -63,7 +63,7 @@ window.onload = function () {
     
     //Boton de CONSULTA
     consult_btn.addEventListener("click", function () {
-        document.getElementById("frm_user_wrapper").style.display = "none";
+        document.getElementById("frm_reg_wrapper").style.display = "none";
         if(ninos == null) {
             nombre_nino[0].innerText = "No hay datos";
             apell_nino[0].innerText = "No hay datos";
@@ -165,7 +165,7 @@ window.onload = function () {
     reg_btn.addEventListener("click", function () {
         document.getElementById("consulta").style.display = "none";
 
-        document.getElementById("frm_user_wrapper").style.display = "inherit";
+        document.getElementById("frm_reg_wrapper").style.display = "inline";
     });
 
     //MUESTRA LOS DATOS DE LA CONSULTA AL CARGAR LA PAGINA

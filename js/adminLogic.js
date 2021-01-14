@@ -81,6 +81,7 @@ window.onload = () => {
                             edad_nino.innerText = snapshot.child(childKeys[i] + "/ninos/" + ninosKeys[j] + "/edad").val();
                             tiempo_nino.innerText = snapshot.child(childKeys[i] + "/ninos/" + ninosKeys[j] + "/tiempoDisp").val();
                             curso_nino.innerText = snapshot.child(childKeys[i] + "/ninos/" + ninosKeys[j] + "/curso").val();
+                            solicitudKeys = [childKeys[i], ninosKeys[j]];
                             side_pend_id[side_pend_id.length-1].addEventListener('click', e => {
                                 var datoNino = e.currentTarget.dataset.nino;
                                 var datoPadre = e.currentTarget.dataset.padre;
@@ -97,6 +98,8 @@ window.onload = () => {
                                 frm_title.innerText = "Pendiente";
                                 id_sol.innerText = datoPadre+datoNino;
                                 solicitudKeys = [datoPadre, datoNino];
+                                rjct_btn.style.display = "inline-block";
+                                acpt_btn.style.display = "inline-block";
                             })
                         } else if (estadoSol == "Por revisar"){
                             side_pend_id[side_pend_id.length-1].insertAdjacentHTML("afterend",
@@ -121,6 +124,8 @@ window.onload = () => {
                                 frm_title.innerText = "Pendiente";
                                 id_sol.innerText = datoPadre+datoNino;
                                 solicitudKeys = [datoPadre, datoNino];
+                                rjct_btn.style.display = "inline-block";
+                                acpt_btn.style.display = "inline-block";
                             })
                         } if(estadoSol == "Aprobado" && side_acpt_id[side_acpt_id.length-1].innerText == "") {
                             side_acpt_id[side_acpt_id.length-1].innerText = childKeys[i]+ninosKeys[j];
@@ -140,9 +145,9 @@ window.onload = () => {
                                 tiempo_nino.innerText = snapshot.child(datoPadre + "/ninos/" + datoNino + "/tiempoDisp").val();
                                 curso_nino.innerText = snapshot.child(datoPadre + "/ninos/" + datoNino + "/curso").val();
                                 container.style.display = "inherit";
-                                rjct_btn.style.display = "inherit"
-                                acpt_btn.style.display = "none"
-                                wrapper.style.height = "647px"
+                                rjct_btn.style.display = "inherit";
+                                acpt_btn.style.display = "none";
+                                wrapper.style.height = "647px";
                                 id_sol.innerText = datoPadre+datoNino;
                                 frm_title.innerText = "Aprobado";
                                 solicitudKeys = [datoPadre, datoNino];
@@ -167,11 +172,11 @@ window.onload = () => {
                                 tiempo_nino.innerText = snapshot.child(datoPadre + "/ninos/" + datoNino + "/tiempoDisp").val();
                                 curso_nino.innerText = snapshot.child(datoPadre + "/ninos/" + datoNino + "/curso").val();
                                 container.style.display = "inherit";
-                                wrapper.style.height = "647px"
+                                wrapper.style.height = "647px";
                                 id_sol.innerText = datoPadre+datoNino;
                                 frm_title.innerText = "Aprobado";
-                                rjct_btn.style.display = "inherit"
-                                acpt_btn.style.display = "none"
+                                rjct_btn.style.display = "inherit";
+                                acpt_btn.style.display = "none";
                                 solicitudKeys = [datoPadre, datoNino];
                             })
                         } else if(estadoSol == "Rechazado" && side_rchz_id[side_rchz_id.length-1].innerText == "") {
@@ -192,9 +197,9 @@ window.onload = () => {
                                 tiempo_nino.innerText = snapshot.child(datoPadre + "/ninos/" + datoNino + "/tiempoDisp").val();
                                 curso_nino.innerText = snapshot.child(datoPadre + "/ninos/" + datoNino + "/curso").val();
                                 container.style.display = "inherit";
-                                rjct_btn.style.display = "none"
-                                acpt_btn.style.display = "inherit"
-                                wrapper.style.height = "647px"
+                                rjct_btn.style.display = "none";
+                                acpt_btn.style.display = "inherit";
+                                wrapper.style.height = "647px";
                                 id_sol.innerText = datoPadre+datoNino;
                                 frm_title.innerText = "Rechazado";
                                 solicitudKeys = [datoPadre, datoNino];
@@ -221,9 +226,9 @@ window.onload = () => {
                                 frm_title.innerText = "Rechazado";
                                 id_sol.innerText = datoPadre+datoNino;
                                 container.style.display = "inherit";
-                                wrapper.style.height = "647px"
-                                rjct_btn.style.display = "none"
-                                acpt_btn.style.display = "inherit"
+                                wrapper.style.height = "647px";
+                                rjct_btn.style.display = "none";
+                                acpt_btn.style.display = "inherit";
                                 solicitudKeys = [datoPadre, datoNino];
                             })
                         }
